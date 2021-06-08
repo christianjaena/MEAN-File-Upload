@@ -2,3 +2,11 @@
 <input type="file" (change)="onFileSelected($event)" />
 <button (click)="onUpload()">Upload</button>
 <p>{{ uploadProgress }}</p>
+
+<div *ngIf="files">
+	<ul>
+		<li *ngFor="let file of files">
+			<a (click)="goTo(file)">{{file}}</a>
+		</li>
+	</ul>
+</div>

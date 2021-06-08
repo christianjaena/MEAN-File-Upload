@@ -7,6 +7,7 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  files: string[] = [];
   selectedFile: File = {} as File;
   uploadProgress = 0;
 
@@ -16,20 +17,28 @@ export class AppComponent {
     this.selectedFile = <File>event.target.files[0];
   }
 
+  goTo(url: string) {
+    window.open(url, '_blank');
+  }
+
   onUpload() {
     const fd = new FormData();
-    fd.append('image', this.selectedFile, this.selectedFile.name);
+    fd.append('file', this.selectedFile, this.selectedFile.name);
     this.http
-      .post('http://localhost:5000/upload', fd, {
+      .post<{ imagePath: string }>('http://localhost:5000/upload', fd, {
         reportProgress: true,
-        observe: 'events',
       })
-      .subscribe((event) => {
-        if (event.type === HttpEventType.UploadProgress) {
-          this.uploadProgress = Math.round((event.loaded / event.loaded) * 100);
-        } else if (event.type === HttpEventType.Response) {
-          console.log(event);
-        }
+      .subscribe((response) => {
+        this.files.push(response.imagePath);
+        // if (event.type === HttpEventType.UploadProgress) {
+        //   if (event.total) {
+        //     this.uploadProgress = Math.round(
+        //       (event.loaded / event.total) * 100
+        //     );
+        //   }
+        // } else if (event.type === HttpEventType.Response) {
+        //   console.log(event);
+        // }
       });
   }
 }
