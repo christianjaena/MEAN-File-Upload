@@ -31,6 +31,7 @@ mongoose
 
 // ** MIDDLEWARES ** //
 app.use('/files', express.static('uploads'));
+
 app.use(morgan('dev'));
 app.use(cors());
 app.use(fileUpload());

@@ -1,5 +1,4 @@
-import { FileUploadService } from './../../services/file-upload.service';
-import { DepFlags } from '@angular/compiler/src/core';
+import { DocumentService } from '../../services/document.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InputFormComponent implements OnInit {
   selectedFile: File = {} as File;
+  author: string = '';
+  title: string = '';
+  date: string = '';
 
-  constructor(private fileUpload: FileUploadService) {}
+  constructor(private documentService: DocumentService) {}
 
   ngOnInit() {}
 
@@ -19,9 +21,12 @@ export class InputFormComponent implements OnInit {
   }
 
   onUpload() {
-    const fd = new FormData();
-    fd.append('file', this.selectedFile, this.selectedFile.name);
+    const formInput = new FormData();
+    formInput.append('author', this.author);
+    formInput.append('title', this.title);
+    formInput.append('date', this.date);
+    formInput.append('file', this.selectedFile, this.selectedFile.name);
 
-    this.fileUpload.uploadFile(fd).subscribe();
+    this.documentService.uploadDocument(formInput).subscribe();
   }
 }

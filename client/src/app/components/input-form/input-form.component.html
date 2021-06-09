@@ -1,3 +1,7 @@
 <h1>File Upload</h1>
+<input type="text" placeholder="Author" [(ngModel)]="author" />
+<input type="text" placeholder="Title" [(ngModel)]="title" />
+<input type="date" [(ngModel)]="date" />
 <input type="file" (change)="onFileSelected($event)" />
 <button (click)="onUpload()">Upload</button>
+<a routerLink="/">Home</a>

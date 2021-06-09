@@ -1,7 +1,12 @@
-<div *ngIf="files">
+<h1>Theses</h1>
+<a routerLink="/addThesis">Add Thesis</a>
+<div *ngIf="documents">
   <ul>
-    <li *ngFor="let file of files">
-      <a (click)="goTo(file)">{{ file }}</a>
+    <li *ngFor="let document of documents">
+      <h1>{{ document.title }}</h1>
+      <h1>{{ document.author }}</h1>
+      <h1>{{ document.date }}</h1>
+      <h1>{{ document.filePath }}</h1>
     </li>
   </ul>
 </div>

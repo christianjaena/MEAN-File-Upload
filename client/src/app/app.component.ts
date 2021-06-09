@@ -1,4 +1,3 @@
-import { FileUploadService } from './services/file-upload.service';
 import { Component } from '@angular/core';
 
 @Component({
