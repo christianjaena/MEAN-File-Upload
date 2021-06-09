@@ -6,7 +6,7 @@
       <h1>{{ document.title }}</h1>
       <h1>{{ document.author }}</h1>
       <h1>{{ document.date }}</h1>
-      <h1>{{ document.filePath }}</h1>
+      <button (click)="goTo(document.filePath)">View</button>
     </li>
   </ul>
 </div>

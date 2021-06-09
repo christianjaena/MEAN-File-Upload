@@ -9,7 +9,7 @@ import { Document } from '../interfaces/document';
 })
 
 export class DocumentService {
-  private url = 'http://localhost:5000/upload';
+  private url = 'http://localhost:5000/document';
 
   constructor(private http: HttpClient) {}
 

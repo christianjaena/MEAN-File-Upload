@@ -4,7 +4,7 @@ const route = express.Router();
 const {
 	getController,
 	postController,
-} = require('../controllers/Controllers');
+} = require('../controllers/documentControllers');
 
 route.get('/', getController);
 

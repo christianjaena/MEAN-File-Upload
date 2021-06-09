@@ -1,7 +1,8 @@
-const Document = require('../models/Document')
+const DocumentModel = require('../models/documentModel');
+const fs = require('fs');
 
 function getController(req, res) {
-	Document.find()
+	DocumentModel.find()
 		.then(result => res.status(200).json(result))
 		.catch(err => res.status(400).json(err.message));
 }
@@ -14,15 +15,17 @@ function postController(req, res) {
 		author,
 		title,
 		date,
-		filePath: `http://localhost:5000/files/${file.name.trim()}`,
+		filePath: `http://localhost:5000/viewDocument/${file.name}`,
 	};
 
-	const newDocument = new Document(newDocumentModel);
+	const newDocument = new DocumentModel(newDocumentModel);
 	newDocument
 		.save()
 		.then(result => {
 			try {
-				file.mv(`./uploads/${file.name}`);
+				!fs.existsSync('./uploadedDocuments') &&
+					fs.mkdirSync('./uploadedDocuments');
+				file.mv(`./uploadedDocuments/${file.name}`);
 				res.status(200).json(result);
 			} catch (err) {
 				console.log(err.message);

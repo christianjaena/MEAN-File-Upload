@@ -5,11 +5,11 @@ const cors = require('cors');
 const fileUpload = require('express-fileupload');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
 const mongoDBURI = require('./mongoDB-connection');
 
-const uploadRoutes = require('./server/routes/uploadRoutes');
+const documentRoutes = require('./server/routes/documentRoutes');
 
 // ** SERVER AND DATABASE CONNECTION ** //
 mongoose
@@ -30,8 +30,7 @@ mongoose
 	.catch(error => console.log(error));
 
 // ** MIDDLEWARES ** //
-app.use('/files', express.static('uploads'));
-
+app.use('/viewDocument', express.static('uploadedDocuments'));
 app.use(morgan('dev'));
 app.use(cors());
 app.use(fileUpload());
@@ -39,4 +38,4 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ** ROUTES ** //
-app.use('/upload', uploadRoutes);
+app.use('/document', documentRoutes);
