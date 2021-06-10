@@ -1,12 +1,24 @@
 <h1>Theses</h1>
 <a routerLink="/addThesis">Add Thesis</a>
-<div *ngIf="documents">
-  <ul>
-    <li *ngFor="let document of documents">
-      <h1>{{ document.title }}</h1>
-      <h1>{{ document.author }}</h1>
-      <h1>{{ document.date }}</h1>
-      <button (click)="goTo(document.filePath)">View</button>
-    </li>
-  </ul>
-</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">College</th>
+      <th scope="col">Date</th>
+      <th scope="col">View</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="documents">
+    <tr *ngFor="let document of documents">
+      <td>{{ document.title }}</td>
+      <td>{{ document.author }}</td>
+      <td>{{ document.college }}</td>
+      <td>{{ document.date }}</td>
+      <td>
+        <button (click)="goTo(document.filePath)">View</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

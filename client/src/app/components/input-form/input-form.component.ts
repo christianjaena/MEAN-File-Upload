@@ -1,6 +1,7 @@
 import { DocumentService } from '../../services/document.service';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import Colleges from './Colleges';
 
 @Component({
   selector: 'app-input-form',
@@ -12,6 +13,8 @@ export class InputFormComponent implements OnInit {
   title: string;
   date: string;
   selectedFile: File;
+  college: string;
+  colleges: string[];
 
   constructor(
     private documentService: DocumentService,
@@ -21,6 +24,8 @@ export class InputFormComponent implements OnInit {
     this.title = '';
     this.date = '';
     this.selectedFile = {} as File;
+    this.college = '';
+    this.colleges = Colleges;
   }
 
   ngOnInit() {}
@@ -34,12 +39,13 @@ export class InputFormComponent implements OnInit {
     formInput.append('author', this.author);
     formInput.append('title', this.title);
     formInput.append('date', this.date);
+    formInput.append('college', this.college);
     formInput.append(
       'file',
       this.selectedFile,
       `${this.date}${this.author}${this.selectedFile.name}`.trim()
     );
-
+		
     this.documentService.uploadDocument(formInput).subscribe();
     this.clearInput();
   }
@@ -48,6 +54,7 @@ export class InputFormComponent implements OnInit {
     this.author = '';
     this.title = '';
     this.date = '';
+    this.college = '';
     this.selectedFile = {} as File;
     this.goBack();
   }

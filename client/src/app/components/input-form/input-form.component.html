@@ -1,7 +1,12 @@
 <h1>File Upload</h1>
 <input type="text" placeholder="Author" [(ngModel)]="author" />
 <input type="text" placeholder="Title" [(ngModel)]="title" />
+<select name="college" id="college" [(ngModel)]="college">
+  <option *ngFor="let college of colleges" value="{{ college }}">
+    {{ college }}
+  </option>
+</select>
 <input type="date" [(ngModel)]="date" />
-<input type="file" (change)="onFileSelected($event)" />
+<input type="file" (change)="onFileSelected($event)" accept=".pdf,.docx,.doc" />
 <button (click)="onUpload()">Upload</button>
 <a routerLink="/">Home</a>
