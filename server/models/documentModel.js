@@ -18,6 +18,10 @@ const documentSchema = new Schema({
 		type: String,
 		required: true
 	},
+	department: {
+		type: String,
+		required: true
+	},
 	filePath: {
 		type: String,
 		required: true,

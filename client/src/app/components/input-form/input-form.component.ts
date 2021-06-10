@@ -1,5 +1,5 @@
 import { DocumentService } from '../../services/document.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import Colleges from './Colleges';
 
@@ -8,13 +8,15 @@ import Colleges from './Colleges';
   templateUrl: './input-form.component.html',
   styleUrls: ['./input-form.component.css'],
 })
-export class InputFormComponent implements OnInit {
+export class InputFormComponent {
   author: string;
   title: string;
   date: string;
   selectedFile: File;
   college: string;
+  department: string;
   colleges: string[];
+  departments: string[];
 
   constructor(
     private documentService: DocumentService,
@@ -25,13 +27,19 @@ export class InputFormComponent implements OnInit {
     this.date = '';
     this.selectedFile = {} as File;
     this.college = '';
-    this.colleges = Colleges;
+    this.department = '';
+    this.colleges = Object.keys(Colleges);
+    this.departments = [];
   }
-
-  ngOnInit() {}
 
   onFileSelected(event: any) {
     this.selectedFile = <File>event.target.files[0];
+  }
+
+  onCollegeSelected() {
+    if (this.college !== '') {
+      this.departments = Colleges[this.college];
+    }
   }
 
   onUpload() {
@@ -40,12 +48,13 @@ export class InputFormComponent implements OnInit {
     formInput.append('title', this.title);
     formInput.append('date', this.date);
     formInput.append('college', this.college);
+    formInput.append('department', this.department);
     formInput.append(
       'file',
       this.selectedFile,
       `${this.date}${this.author}${this.selectedFile.name}`.trim()
     );
-		
+
     this.documentService.uploadDocument(formInput).subscribe();
     this.clearInput();
   }

@@ -1,9 +1,21 @@
 <h1>File Upload</h1>
 <input type="text" placeholder="Author" [(ngModel)]="author" />
 <input type="text" placeholder="Title" [(ngModel)]="title" />
-<select name="college" id="college" [(ngModel)]="college">
+<select
+  name="college"
+  id="college"
+  [(ngModel)]="college"
+  (change)="onCollegeSelected()"
+>
+  <option value="" disabled selected>College</option>
   <option *ngFor="let college of colleges" value="{{ college }}">
     {{ college }}
+  </option>
+</select>
+<select name="department" id="department" [(ngModel)]="department">
+  <option value="" disabled selected>Department</option>
+  <option *ngFor="let department of departments" value="{{ department }}">
+    {{ department }}
   </option>
 </select>
 <input type="date" [(ngModel)]="date" />

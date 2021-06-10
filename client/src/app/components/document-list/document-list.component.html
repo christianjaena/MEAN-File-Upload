@@ -6,6 +6,7 @@
       <th scope="col">Title</th>
       <th scope="col">Author</th>
       <th scope="col">College</th>
+      <th scope="col">Department</th>
       <th scope="col">Date</th>
       <th scope="col">View</th>
     </tr>
@@ -15,6 +16,7 @@
       <td>{{ document.title }}</td>
       <td>{{ document.author }}</td>
       <td>{{ document.college }}</td>
+      <td>{{ document.department }}</td>
       <td>{{ document.date }}</td>
       <td>
         <button (click)="goTo(document.filePath)">View</button>

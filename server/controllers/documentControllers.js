@@ -8,13 +8,14 @@ function getController(req, res) {
 }
 
 function postController(req, res) {
-	const { author, title, date, college } = req.body;
+	const { author, title, date, college, department } = req.body;
 	const { file } = req.files;
 
 	const newDocumentModel = {
 		author,
 		title,
 		college,
+		department,
 		date,
 		filePath: `http://localhost:5000/viewDocument/${file.name}`,
 	};
