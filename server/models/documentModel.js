@@ -8,7 +8,7 @@ const documentSchema = new Schema({
 	},
 	title: {
 		type: String,
-		required: true
+		required: true,
 	},
 	date: {
 		type: String,
@@ -16,11 +16,11 @@ const documentSchema = new Schema({
 	},
 	college: {
 		type: String,
-		required: true
+		required: true,
 	},
 	department: {
 		type: String,
-		required: true
+		required: true,
 	},
 	filePath: {
 		type: String,

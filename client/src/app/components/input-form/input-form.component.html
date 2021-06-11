@@ -1,24 +1,95 @@
-<h1>File Upload</h1>
-<input type="text" placeholder="Author" [(ngModel)]="author" />
-<input type="text" placeholder="Title" [(ngModel)]="title" />
-<select
-  name="college"
-  id="college"
-  [(ngModel)]="college"
-  (change)="onCollegeSelected()"
->
-  <option value="" disabled selected>College</option>
-  <option *ngFor="let college of colleges" value="{{ college }}">
-    {{ college }}
-  </option>
-</select>
-<select name="department" id="department" [(ngModel)]="department">
-  <option value="" disabled selected>Department</option>
-  <option *ngFor="let department of departments" value="{{ department }}">
-    {{ department }}
-  </option>
-</select>
-<input type="date" [(ngModel)]="date" />
-<input type="file" (change)="onFileSelected($event)" accept=".pdf,.docx,.doc" />
-<button (click)="onUpload()">Upload</button>
-<a routerLink="/">Home</a>
+<div class="container">
+  <h1>File Upload</h1>
+  <button class="btn btn-primary">
+    <a routerLink="/">Home</a>
+  </button>
+  <div class="form-group">
+    <div class="form-control">
+      <div>
+        <label for="author">Author</label>
+      </div>
+      <div>
+        <input
+          type="text"
+          id="author"
+          placeholder="Enter author"
+          [(ngModel)]="author"
+		  required
+        />
+      </div>
+    </div>
+    <div class="form-control">
+      <div>
+        <label for="title">Title</label>
+      </div>
+      <div>
+        <input
+          type="text"
+          id="title"
+          placeholder="Enter title"
+          [(ngModel)]="title"
+		  required
+        />
+      </div>
+    </div>
+    <div class="form-control">
+      <div>
+        <label for="college">College</label>
+      </div>
+      <div>
+        <select
+          name="college"
+          id="college"
+          [(ngModel)]="college"
+          (change)="onCollegeSelected()"
+		  required
+        >
+          <option value="" disabled selected>Select College</option>
+          <option *ngFor="let college of colleges" value="{{ college }}">
+            {{ college }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="form-control">
+      <div>
+        <label for="department">Department</label>
+      </div>
+      <div>
+        <select name="department" id="department" [(ngModel)]="department" required>
+          <option value="" disabled selected>Select Department</option>
+          <option
+            *ngFor="let department of departments"
+            value="{{ department }}"
+          >
+            {{ department }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="form-control">
+      <div>
+        <label for="date">Date</label>
+      </div>
+      <div>
+        <input type="date" [(ngModel)]="date" required />
+      </div>
+    </div>
+    <div class="form-control">
+      <div>
+        <label for="file">File</label>
+      </div>
+      <div>
+        <input
+          type="file"
+          (change)="onFileSelected($event)"
+          accept=".pdf,.docx,.doc"
+		  required
+        />
+      </div>
+    </div>
+    <div class="form-control">
+      <button class="btn btn-danger" (click)="onUpload()">Upload</button>
+    </div>
+  </div>
+</div>

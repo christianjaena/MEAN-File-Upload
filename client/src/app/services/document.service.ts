@@ -7,7 +7,6 @@ import { Document } from '../interfaces/document';
 @Injectable({
   providedIn: 'root',
 })
-
 export class DocumentService {
   private url = 'http://localhost:5000/document';
 
@@ -17,7 +16,7 @@ export class DocumentService {
     return this.http.post<Document>(this.url, formData);
   }
 
-	getDocuments(): Observable<Document[]> {
-		return this.http.get<Document[]>(this.url)
-	}
+  getDocuments(): Observable<Document[]> {
+    return this.http.get<Document[]>(this.url);
+  }
 }
