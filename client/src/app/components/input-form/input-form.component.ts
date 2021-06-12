@@ -99,7 +99,13 @@ export class InputFormComponent {
     formData.append('college', this.documentForm.get('college')?.value);
     formData.append('department', this.documentForm.get('department')?.value);
     formData.append('date', this.documentForm.get('date')?.value);
-    formData.append('file', this.documentForm.get('file')?.value);
+    formData.append(
+      'file',
+      this.documentForm.get('file')?.value,
+      `${this.documentForm.get('date')?.value}${
+        this.documentForm.get('author')?.value
+      }${this.documentForm.get('file')?.value.name}`.trim()
+    );
 
     this.documentService.uploadDocument(formData).subscribe();
     this.clearInput();
