@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <h1>File Upload</h1>
   <button class="btn btn-primary">
     <a routerLink="/">Home</a>
@@ -89,7 +89,29 @@
       </div>
     </div>
     <div class="form-control">
-      <button class="btn btn-danger" (click)="onUpload()">Upload</button>
+      <button class="btn btn-danger" [disabled]="isValid" (click)="onUpload()">Upload</button>
     </div>
   </div>
-</div>
+</div> -->
+
+<form [formGroup]="documentForm" (ngSubmit)="onSubmit()">
+  <label for="author">Author: </label>
+  <input id="author" type="text" formControlName="author" />
+  <label for="title">Title: </label>
+  <input id="title" type="text" formControlName="title" />
+  <label for="date">Date: </label>
+  <input id="date" type="date" formControlName="date" />
+  <label for="file">File: </label>
+  <input
+    id="file"
+    type="file"
+    formControlName="file"
+    (change)="onFileChange($event)"
+  />
+  <label for="college">College: </label>
+  <input id="college" type="text" formControlName="college" />
+  <label for="department">Department </label>
+  <input id="department" type="text" formControlName="department" />
+  <p>Complete the form to submit.</p>
+  <button type="submit" [disabled]="!documentForm.valid">Submit</button>
+</form>

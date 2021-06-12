@@ -2,6 +2,7 @@ import { DocumentService } from '../../services/document.service';
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import Colleges from './Colleges';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-input-form',
@@ -17,6 +18,16 @@ export class InputFormComponent {
   department: string;
   colleges: string[];
   departments: string[];
+  isValid: boolean = false;
+
+  documentForm = new FormGroup({
+    author: new FormControl('', [Validators.required]),
+    title: new FormControl('', [Validators.required]),
+    date: new FormControl('', [Validators.required]),
+    file: new FormControl('', [Validators.required]),
+    college: new FormControl('', [Validators.required]),
+    department: new FormControl('', [Validators.required]),
+  });
 
   constructor(
     private documentService: DocumentService,
@@ -70,5 +81,27 @@ export class InputFormComponent {
 
   goBack() {
     this.location.back();
+  }
+
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.documentForm.patchValue({
+        file,
+      });
+    }
+  }
+
+  onSubmit() {
+    const formData = new FormData();
+    formData.append('author', this.documentForm.get('author')?.value);
+    formData.append('title', this.documentForm.get('title')?.value);
+    formData.append('college', this.documentForm.get('college')?.value);
+    formData.append('department', this.documentForm.get('department')?.value);
+    formData.append('date', this.documentForm.get('date')?.value);
+    formData.append('file', this.documentForm.get('file')?.value);
+
+    this.documentService.uploadDocument(formData).subscribe();
+    this.clearInput();
   }
 }
