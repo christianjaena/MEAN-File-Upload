@@ -1,8 +1,4 @@
 <!-- <div class="container">
-  <h1>File Upload</h1>
-  <button class="btn btn-primary">
-    <a routerLink="/">Home</a>
-  </button>
   <div class="form-group">
     <div class="form-control">
       <div>
@@ -37,18 +33,6 @@
         <label for="college">College</label>
       </div>
       <div>
-        <select
-          name="college"
-          id="college"
-          [(ngModel)]="college"
-          (change)="onCollegeSelected()"
-		  required
-        >
-          <option value="" disabled selected>Select College</option>
-          <option *ngFor="let college of colleges" value="{{ college }}">
-            {{ college }}
-          </option>
-        </select>
       </div>
     </div>
     <div class="form-control">
@@ -56,15 +40,6 @@
         <label for="department">Department</label>
       </div>
       <div>
-        <select name="department" id="department" [(ngModel)]="department" required>
-          <option value="" disabled selected>Select Department</option>
-          <option
-            *ngFor="let department of departments"
-            value="{{ department }}"
-          >
-            {{ department }}
-          </option>
-        </select>
       </div>
     </div>
     <div class="form-control">
@@ -94,24 +69,86 @@
   </div>
 </div> -->
 
-<form [formGroup]="documentForm" (ngSubmit)="onSubmit()">
-  <label for="author">Author: </label>
-  <input id="author" type="text" formControlName="author" />
-  <label for="title">Title: </label>
-  <input id="title" type="text" formControlName="title" />
-  <label for="date">Date: </label>
-  <input id="date" type="date" formControlName="date" />
-  <label for="file">File: </label>
-  <input
-    id="file"
-    type="file"
-    formControlName="file"
-    (change)="onFileChange($event)"
-  />
-  <label for="college">College: </label>
-  <input id="college" type="text" formControlName="college" />
-  <label for="department">Department </label>
-  <input id="department" type="text" formControlName="department" />
-  <p>Complete the form to submit.</p>
-  <button type="submit" [disabled]="!documentForm.valid">Submit</button>
-</form>
+<div class="container">
+  <h1>Add Thesis</h1>
+  <button class="btn btn-primary">
+    <a routerLink="/">Home</a>
+  </button>
+  <form class="form-group" [formGroup]="documentForm" (ngSubmit)="onSubmit()">
+    <div class="form-control">
+      <label for="author">Author: </label>
+      <div>
+        <input id="author" type="text" formControlName="author" />
+      </div>
+    </div>
+    <div class="form-control">
+      <label for="title">Title: </label>
+      <div>
+        <input id="title" type="text" formControlName="title" />
+      </div>
+    </div>
+    <div class="form-control">
+      <label for="date">Date: </label>
+      <div>
+        <input id="date" type="date" formControlName="date" />
+      </div>
+    </div>
+    <div class="form-control">
+      <label for="file">File: </label>
+      <div>
+        <input
+          id="file"
+          type="file"
+          formControlName="file"
+          (change)="onFileChange($event)"
+        />
+      </div>
+    </div>
+    <div class="form-control">
+      <label for="college">College: </label>
+      <div>
+        <select
+          name="college"
+          id="college"
+          formControlName="college"
+          (change)="onCollegeSelected()"
+          required
+        >
+          <option value="" disabled selected>Select College</option>
+          <option *ngFor="let college of colleges" value="{{ college }}">
+            {{ college }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="form-control">
+      <label for="department">Department: </label>
+      <div>
+        <select
+          name="department"
+          id="department"
+          formControlName="department"
+          required
+        >
+          <option value="" disabled selected>Select Department</option>
+          <option
+            *ngFor="let department of departments"
+            value="{{ department }}"
+          >
+            {{ department }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <p *ngIf="!documentForm.valid">Complete the form to submit.</p>
+    <div>
+      <button
+        class="btn btn-success"
+        type="submit"
+        [disabled]="!documentForm.valid"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
