@@ -83,9 +83,13 @@ export class InputFormComponent implements OnInit {
     formData.append('file', this.file?.value, fileName);
 
     this.documentService.uploadDocument(formData).subscribe(() => {
-      this.documentForm.reset();
+      this.clearInput();
       this.goBack();
     });
+  }
+
+  clearInput() {
+    this.documentForm.reset();
   }
 
   createFileName(date: any, author: any, file: any) {
