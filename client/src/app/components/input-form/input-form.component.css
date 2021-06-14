@@ -10,5 +10,24 @@ span {
 
 .split {
   display: flex;
+  margin-bottom: 10px;
   justify-content: space-between;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+button {
+  width: 90px;
+  height: 40px;
+  margin: 10px 10px 0 0;
+}
+
+.button-group {
+  display: flex;
+}
+
+.container {
+	margin-top: 10px;
 }
