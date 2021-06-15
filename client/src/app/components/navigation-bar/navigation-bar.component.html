@@ -5,10 +5,23 @@
   <span>
     <ul>
       <li>
-        <a routerLink="/">Home</a>
+        <a
+          [ngStyle]="{
+            'border-bottom': title === 'Theses' ? '2px solid black' : 'none'
+          }"
+          routerLink="/"
+          >Home</a
+        >
       </li>
       <li>
-        <a routerLink="/addThesis"> Add Thesis </a>
+        <a
+          [ngStyle]="{
+            'border-bottom': title === 'Add Thesis' ? '2px solid black' : 'none'
+          }"
+          routerLink="/addThesis"
+        >
+          Add Thesis
+        </a>
       </li>
     </ul>
   </span>

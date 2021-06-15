@@ -80,14 +80,15 @@
 
     <div class="split">
       <div class="col-md-5">
-        <label for="date"
-          ><strong>Date </strong><span *ngIf="date.errors?.required">*</span>
+        <label for="dateDefended"
+          ><strong>Date Defended </strong
+          ><span *ngIf="dateDefended.errors?.required">*</span>
         </label>
         <input
           class="form-control"
-          id="date"
+          id="dateDefended"
           type="date"
-          formControlName="date"
+          formControlName="dateDefended"
         />
       </div>
       <div class="col-md-6">

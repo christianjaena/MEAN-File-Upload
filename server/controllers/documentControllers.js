@@ -3,12 +3,13 @@ const fs = require('fs');
 
 function getController(req, res) {
 	DocumentModel.find()
+		.sort({ createdAt: -1 })
 		.then(result => res.status(200).json(result))
 		.catch(err => res.status(400).json(err.message));
 }
 
 function postController(req, res) {
-	const { author, title, date, college, department } = req.body;
+	const { author, title, dateDefended, college, department } = req.body;
 	const { file } = req.files;
 
 	const newDocumentModel = {
@@ -16,7 +17,7 @@ function postController(req, res) {
 		title,
 		college,
 		department,
-		date,
+		dateDefended,
 		filePath: `http://localhost:5000/viewDocument/${file.name}`,
 	};
 

@@ -3,6 +3,8 @@ export interface Document {
   author: string;
   college: string;
   department: string;
-  date: string;
+  dateDefended: string;
+	uploadedDate: string;
+	createdAt: string;
   filePath: string;
 }

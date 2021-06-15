@@ -1,6 +1,6 @@
 import { DocumentService } from './../../services/document.service';
 import { Component, OnInit } from '@angular/core';
-import { Document } from '../../interfaces/document';
+import { Document } from '../../interfaces/document.interface';
 
 @Component({
   selector: 'app-document-list',

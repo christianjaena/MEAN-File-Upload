@@ -26,7 +26,7 @@ export class InputFormComponent implements OnInit {
     this.documentForm = new FormGroup({
       author: new FormControl('', [Validators.required]),
       title: new FormControl('', [Validators.required]),
-      date: new FormControl('', [Validators.required]),
+      dateDefended: new FormControl('', [Validators.required]),
       file: new FormControl('', [Validators.required]),
       college: new FormControl('', [Validators.required]),
       department: new FormControl('', [Validators.required]),
@@ -41,8 +41,8 @@ export class InputFormComponent implements OnInit {
     return this.documentForm.get('title')!;
   }
 
-  get date() {
-    return this.documentForm.get('date')!;
+  get dateDefended() {
+    return this.documentForm.get('dateDefended')!;
   }
 
   get file() {
@@ -74,12 +74,12 @@ export class InputFormComponent implements OnInit {
 
   onSubmit() {
     const formData = new FormData();
-    const fileName = this.createFileName(this.date, this.author, this.file);
+    const fileName = this.createFileName(this.dateDefended, this.author, this.file);
     formData.append('author', this.author?.value);
     formData.append('title', this.title?.value);
     formData.append('college', this.college?.value);
     formData.append('department', this.department?.value);
-    formData.append('date', this.date?.value);
+    formData.append('dateDefended', this.dateDefended?.value);
     formData.append('file', this.file?.value, fileName);
 
     this.documentService.uploadDocument(formData).subscribe(() => {
@@ -92,8 +92,8 @@ export class InputFormComponent implements OnInit {
     this.documentForm.reset();
   }
 
-  createFileName(date: any, author: any, file: any) {
-    return `${date?.value}${author?.value}${file?.value.name}`.trim();
+  createFileName(dateDefended: any, author: any, file: any) {
+    return `${dateDefended?.value}${author?.value}${file?.value.name}`.trim();
   }
 
   goBack() {
