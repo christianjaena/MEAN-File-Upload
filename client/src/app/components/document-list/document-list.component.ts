@@ -16,13 +16,13 @@ export class DocumentListComponent implements OnInit {
     this.getDocuments();
   }
 
-  goTo(url: string) {
-    window.open(url, '_blank');
-  }
-
   getDocuments() {
     this.documentService
       .getDocuments()
       .subscribe((result) => (this.documents = result));
+  }
+
+  goTo(url: string) {
+    window.open(url, '_blank');
   }
 }

@@ -57,6 +57,26 @@ export class InputFormComponent implements OnInit {
     return this.documentForm.get('department')!;
   }
 
+  onSubmit() {
+    const formData = new FormData();
+    const fileName = this.createFileName(
+      this.dateDefended,
+      this.author,
+      this.file
+    );
+    formData.append('author', this.author?.value);
+    formData.append('title', this.title?.value);
+    formData.append('college', this.college?.value);
+    formData.append('department', this.department?.value);
+    formData.append('dateDefended', this.dateDefended?.value);
+    formData.append('file', this.file?.value, fileName);
+
+    this.documentService.uploadDocument(formData).subscribe(() => {
+      this.clearInput();
+      this.goBack();
+    });
+  }
+
   onCollegeSelected() {
     if (this.college.value !== '') {
       this.departments = Colleges[this.college.value];
@@ -72,28 +92,12 @@ export class InputFormComponent implements OnInit {
     }
   }
 
-  onSubmit() {
-    const formData = new FormData();
-    const fileName = this.createFileName(this.dateDefended, this.author, this.file);
-    formData.append('author', this.author?.value);
-    formData.append('title', this.title?.value);
-    formData.append('college', this.college?.value);
-    formData.append('department', this.department?.value);
-    formData.append('dateDefended', this.dateDefended?.value);
-    formData.append('file', this.file?.value, fileName);
-
-    this.documentService.uploadDocument(formData).subscribe(() => {
-      this.clearInput();
-      this.goBack();
-    });
+  createFileName(dateDefended: any, author: any, file: any) {
+    return `${dateDefended?.value}${author?.value}${file?.value.name}`.trim();
   }
 
   clearInput() {
     this.documentForm.reset();
-  }
-
-  createFileName(dateDefended: any, author: any, file: any) {
-    return `${dateDefended?.value}${author?.value}${file?.value.name}`.trim();
   }
 
   goBack() {

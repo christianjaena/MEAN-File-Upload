@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './navigation-bar.component.html',
   styleUrls: ['./navigation-bar.component.css'],
 })
-export class NavigationBarComponent implements OnInit {
+export class NavigationBarComponent {
   title: string = 'Theses';
 
   constructor(location: Location, router: Router) {
@@ -22,6 +22,4 @@ export class NavigationBarComponent implements OnInit {
       }
     });
   }
-
-  ngOnInit() {}
 }
