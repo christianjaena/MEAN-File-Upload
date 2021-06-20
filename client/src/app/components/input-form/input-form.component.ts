@@ -98,6 +98,8 @@ export class InputFormComponent implements OnInit {
 
   clearInput() {
     this.documentForm.reset();
+    this.colleges = Object.keys(Colleges);
+    this.departments = [];
   }
 
   goBack() {
